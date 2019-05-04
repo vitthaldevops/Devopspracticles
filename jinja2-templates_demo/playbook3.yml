@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  vars: 
+    web_dependencies:
+         - python
+         - python-setuptools
+         - python-dev
+         - python-pip
+         - build-essentioal
+    sql_dependencies:
+         - python
+         - python-mysqldb
+
+  tasks: 
+  - name: install dependencies
+    debug: msg='{{ item }}'
+    with_items: '{{ sql_dependencies | union(web_dependencies) }}'
+
+
+
